@@ -7,3 +7,6 @@
 
 2) Object타입의 key들을 추출해서 array타입으로 return해주는 함수 : Object.keys(객체); 필자는 객체에 들어있는 값들이 iterable이라고 판단해서 자바스크립트의 for or문에 넣어, filter를 정의해 사용하려했는데 iterable이 아니였기에 사용하지 못했다. 이는 Symbol.iterator메소드가 없기 때문이었다. 
 이를 해결하기 위해서는 Symbol.iterator함수와, next()함수를 이용해 리턴해주는 것이 객체 내부 메소드에 정의 해주어야한다.
+
+3)데이터 필터링 시 객체에서 한 요소만을 제거하고 싶을 때 delete를 사용하면 된다. 
+예시로 delete obj[no]을 하게 된다면 obj객체의 no값이 사라지게 된다.
