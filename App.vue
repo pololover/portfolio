@@ -28,12 +28,12 @@
       안녕하세요 천승현입니다. 끝을 모르게 성장하고 싶습니다. 감사합니다.
       </div>
       <!-- info -->
-      <div>
+      <div class="icons_dummy">
         <div class="icons_flex" v-for="(item, index) in user" :key="index">
-          <i class="fas fa-user About_icons"></i>
+          <i :class="icons[index]"></i>
           <div class="icons_flex_col">
-            <span>{{index}}</span> 
-            <span>{{item}}</span>
+            <span v-if="userInfo">{{userInfo[index]}}</span>
+            <span>{{userInfoValue[index]}}</span>
           </div>
         </div>
       </div>
@@ -57,20 +57,52 @@ export default {
   data(){
     return {
       userInfo : {},
+      userInfoValue : {},
     }
   },
   computed : {
     user() {
       return this.$store.state.user;
+    },
+    icons() {
+      return this.$store.state.icons;
+    },
+  },
+  methods: {
+    filter(f,iter){
+      var res = [];
+      for (const a of iter){
+        if(f(a)) res.push(a);
+      }
+      return res;
+    },
+    map(f, iter){
+      var res =[];
+      for (const a of iter){
+        res.push(f(a))
+      }
+      return res;
     }
   },
   created(){
-    const user = {이름:'천승현', 생년월일 :'98.08.07',
-                  이메일: 'csh7215@naver.com', 학력: '삼육대학교(4학년 재학)',
-                  학과 : '컴퓨터공학과', 주소지 : '서울시 노원구' }
-    this.$store.commit('SET_USER', user)
-    this.userInfo = Object.keys(this.user);
-    console.log(this.userInfo);
+    const user = [{이름:'천승현', 아이콘:true}, 
+                  {생년월일 :'98.08.07', 아이콘:true},
+                  {이메일: 'csh7215@naver.com',아이콘:true}, 
+                  {학력: '삼육대학교(4학년) 컴퓨터공학과', 아이콘: true},
+                  {주소지 : '서울시 노원구', 아이콘:true}]
+   
+   const icons = ['fas fa-user', 'fas fa-calendar-week', 'fas fa-envelope', 'fas fa-pencil-alt',
+                  'fas fa-map-marker-alt'];
+   this.$store.commit('SET_ICONS', icons);
+   this.$store.commit('SET_USER', user);
+    
+    //js 객체에서 한 요소만 제거하고 싶을때 delete키워드사용.
+   },
+   mounted() {
+     this.userInfo = this.map(u=> u.shift(),this.map(u=>Object.keys(u),this.user));
+     console.log(this.user);
+     this.userInfoValue = this.map(u=>u.shift(),this.map(u=>Object.values(u),this.user));
+     
    }
 }
 </script>
@@ -140,9 +172,16 @@ body {
   padding: 2em 0;
 }
 
+.icons_dummy {
+  display:flex;
+  flex-wrap: wrap;
+}
+
 .icons_flex{
   display:flex;
+  width :30%;
   align-items: center;
+  margin-bottom:2em;
 }
 
 .About_icons {
@@ -150,7 +189,7 @@ body {
 }
 
 .icons_flex_col{
-  margin-left : 1.5em;
+  margin-left : 1em;
   display: flex;
   flex-direction: column;
   line-height: 1.5em;
