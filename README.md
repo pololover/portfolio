@@ -13,3 +13,6 @@
 *fx.js에서 정의하는 이터러블 호환함수 map과 filter는 객체를 리턴한다. 때문에 사용시 반환타입에 따라 잘 가공해서 쓰는 게 좋다.
 
 *flex에서 요소배치할 때 width는 자식요소에서, flex-wrap과 같은 설정은 부모요소에서 해준다.
+
+*animation > @keyfreme > transition순서대로 애니메이션을 정의하는 게 좋다.
+animation은 전체 효과들을 어떻게 사용할지, @keyframes는 animatino이 실행되는 동안 어떤 타이밍에 어떤 효과를 줄지 더 디테일하게 설정이 가능하게 하고 좀 더 자연스러운 애니메이션을 하게 해 주며, transition은 일부 효과를 지닌다.
