@@ -38,6 +38,30 @@
         </div>
       </div>
     </div>
+    <!-- skills-->
+    <div class="Skills_wrap">
+      <div class="Skill_title">
+        Skills
+      </div>
+      <div class="skill_img_padd">
+        <img src="../src/images/html.png" class="skill_img logo_imgs" ref="logo_imgs1">
+        <img src="../src/images/css.png" class="skill_img_css logo_imgs" ref="logo_imgs2">
+        <img src="../src/images/js.png" class="skill_img logo_imgs" ref="logo_imgs3">
+        <img src="../src/images/vue.png" class="skill_img_vue logo_imgs" ref="logo_imgs4">
+        <img src="../src/images/firelogo.jpg" class="skill_img_fire logo_imgs" ref="logo_imgs5">
+        <img src="../src/images/aws_logo.png" class="skill_img_fire logo_imgs" ref="logo_imgs6">
+        <img src="../src/images/github.png" class="skill_img_git logo_imgs" ref="logo_imgs7">
+      </div>
+      <!-- secondary skills -->
+      <div class="Skill_title">
+        Secondary Skills
+      </div>
+      <div class="skill_img_padd">
+        <img src="../src/images/python-logo.png" class="skill_img_phy logo_imgs" ref="logo_imgs8">
+        <img src="../src/images/jsp.png" class="skill_img_phy logo_imgs" ref="logo_imgs9">
+        <img src="../src/images/java_logo.png" class="skill_img_java logo_imgs" ref="logo_imgs10">
+      </div>
+    </div>
     <!-- Projects -->
     <div>
 
@@ -58,6 +82,7 @@ export default {
     return {
       userInfo : {},
       userInfoValue : {},
+      scrollTop : 0,
     }
   },
   computed : {
@@ -82,6 +107,35 @@ export default {
         res.push(f(a))
       }
       return res;
+    },
+    scrollEvent : function(){
+      this.scrollTop = document.documentElement.scrollTop;
+      if(this.scrollTop >=410 ){
+        this.$refs.logo_imgs1.style.visibility = 'visible';
+        this.$refs.logo_imgs1.style.animation = 'right 1.3s linear';
+        this.$refs.logo_imgs2.style.visibility = 'visible';
+        this.$refs.logo_imgs2.style.animation = 'top 1.3s linear';
+        this.$refs.logo_imgs3.style.visibility = 'visible';
+        this.$refs.logo_imgs3.style.animation = 'left 1.3s linear';
+        this.$refs.logo_imgs4.style.visibility = 'visible';
+        this.$refs.logo_imgs4.style.animation = 'top 1.3s linear';
+        this.$refs.logo_imgs5.style.visibility = 'visible';
+        this.$refs.logo_imgs5.style.animation = 'left 1.3s linear';
+        this.$refs.logo_imgs6.style.visibility = 'visible';
+        this.$refs.logo_imgs6.style.animation = 'left 1.3s linear';
+        this.$refs.logo_imgs7.style.visibility = 'visible';
+        this.$refs.logo_imgs7.style.animation = 'left 1.3s linear';
+     }
+       //410부터
+    
+    if(this.scrollTop > 720){
+      this.$refs.logo_imgs8.style.visibility = 'visible';
+      this.$refs.logo_imgs8.style.animation = 'bottom 1.3s linear';
+      this.$refs.logo_imgs9.style.visibility = 'visible';
+      this.$refs.logo_imgs9.style.animation = 'top 1.3s linear';
+      this.$refs.logo_imgs10.style.visibility = 'visible';
+      this.$refs.logo_imgs10.style.animation = 'bottom 1.3s linear';
+      }
     }
   },
   created(){
@@ -102,7 +156,8 @@ export default {
      this.userInfo = this.map(u=> u.shift(),this.map(u=>Object.keys(u),this.user));
      console.log(this.user);
      this.userInfoValue = this.map(u=>u.shift(),this.map(u=>Object.values(u),this.user));
-     
+     window.scrollTo(0, 0);
+     document.addEventListener('scroll', this.scrollEvent)
    }
 }
 </script>
@@ -127,7 +182,7 @@ body {
 
 .header_content{
   position:fixed;
-  top: 0px;
+  top:0px;
   left:0px;
   right:0px;
   margin: 1em 4em;
@@ -138,9 +193,6 @@ body {
 
 .header_title{
   font-size:1.5rem;
-}
-.header_nav{
-  float: right;
 }
 
 .header_nav_ele{
@@ -161,7 +213,7 @@ body {
 }
 
 
-.About_title{
+.About_title, .Skill_title{
   font-size:2em;
   border-bottom: 1px solid black;
   margin-right:50px;
@@ -194,5 +246,110 @@ body {
   flex-direction: column;
   line-height: 1.5em;
 }
+
+.Skills_wrap{
+  background-color:whitesmoke;
+  padding: 2em 6em 5em;
+}
+
+.skill_img{
+  margin-top:1em;
+  width : 8em;
+  /* animation : right 1.3s linear; */
+}
+
+@keyframes right {
+    from {
+      opacity: 0;
+      transform: translate(-40px);
+    }
+    to{
+      opacity: 1;
+      transform : translate(0px);
+    }
+}
+
+.skill_img_padd {
+  margin:2em 0;
+  padding: 2em;
+  border-radius: 30px;
+  background-color:rgba(255, 255, 255, 0.589);
+}
+
+.logo_imgs{
+  visibility: hidden;
+}
+
+.skill_img_css {
+  margin-top:1em;
+  width : 5.6em;
+  /* animation : top 1.3s linear; */
+}
+
+@keyframes top {
+  from {
+    opacity: 0;
+    transform: translate(0, -40px);
+  }
+  to {
+    opacity: 1;
+    transfrom : translate(0px);
+  }
+}
+
+.skill_img_vue {
+  width:7.1em;
+  height:6.4em;
+  /* animation : top 1.5s linear; */
+}
+
+.skill_img_fire{
+  margin-left:1.2em;
+  width:7.1em;
+  height:6.4em;
+  border-radius: 15px;
+  animation : left 1.5s linear;
+}
+
+@keyframes left {
+  from{
+    opacity: 0;
+    transform: translate(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px);
+  } 
+}
+
+@keyframes bottom {
+  from{
+    opacity: 0;
+    transform: translate(0, 40px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px);
+  } 
+}
+
+
+.skill_img_git{
+  width : 9.4em;
+  height: 6.4em;
+  animation : left 1.5s linear;
+}
+
+.skill_img_phy{
+  width :8.5em;
+  height:5em;
+  margin-bottom:2em;
+}
+
+.skill_img_java{
+  margin:1em;
+  width : 8em;
+}
+
 
 </style>
