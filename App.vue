@@ -169,8 +169,16 @@
           <!-- img gsap -->
           <div>
             <!-- img gsap 애니메이션 사진-1 -->
-            <div>
-              <img src="../src/images/health-1.jpg" class="gsap_img">
+            <div class="health_responsive">
+              <div>
+                <img src="../src/images/health-1.jpg" class="gsap_img" @mouseenter="img_hover" ref="health_ani1">
+              </div>
+              <div>
+                <img src="../src/images/health-4.jpg" class="gsap_img2" ref="health_ani2">
+              </div>
+              <div>
+                <img src="../src/images/health-3.jpg" class="gsap_img3" ref="health_ani3">
+              </div>
             </div>
             <!-- img gsap 애니메이션 사진-2 -->
             <div>
@@ -262,6 +270,16 @@ export default {
       this.$refs.logo_imgs10.style.animation = 'bottom 1.3s linear';
       }
     },
+    img_hover : function(){
+      console.log('aa')
+      
+      // this.$refs.health_ani2.style.transform = 'translate(0)';
+      this.$refs.health_ani2.style.opacity = '1';
+      this.$refs.health_ani2.style.animation = 'right .5s linear';
+      // this.$refs.health_ani3.style.transform = 'translate(0)';
+      this.$refs.health_ani3.style.opacity = '1';
+      this.$refs.health_ani3.style.animation = 'right .6s linear';
+    },
     onFocus : function() {
       
     }
@@ -313,8 +331,7 @@ body {
 .header_content{
   z-index: 3;
   position:fixed;
-  background-color:beige;
-
+  background-color:rgba(255,255,255,0.8);
   color:black;
   height:40px;
   top:0px;
@@ -487,7 +504,7 @@ body {
 }
 
 .Project_wrap{
-  background-color:darkgray;
+  background-color:rgba(0,0,0,0.9);
   padding: 2em 6em 6em;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight:400;
@@ -498,17 +515,16 @@ body {
   margin-bottom:1em;
   padding: 3em;
   border-radius: 30px;
-  background-color:rgba(255, 255, 255, 0.589);
+  background-color:transparent;
   height:20em;
 }
 
 .Project_padd3{
   background-color:rgba(255, 255, 255, 0.589);
-  height:30em;
-  padding-bottom:4em;
+  height:auto;
+  padding-bottom:7em;
   position:relative;
   padding-left:2em;
-  padding-right:1em;
 }
 
 .project_fran_title {
@@ -521,8 +537,9 @@ body {
 }
 
 .fran_whiteBox{
-  background-color:rgb(255, 255, 255, 0.5);
+  background-color:rgba(255, 255, 255, 0.85);
   padding : 0 1em 3em;
+  padding-right:1em;
   position:relative;
 }
 
@@ -567,9 +584,15 @@ body {
 .project_health_wrap{
   display:flex;
   flex :1;
-  margin-top:2em;
+  margin-top:3em;
+  margin-left:2em;
 }
 .health_description{
+  width: 360px;
+  margin-right:1.5em;
+}
+
+.health_description_fade{
   width: 360px;
   margin-right:1.5em;
 }
@@ -588,11 +611,13 @@ body {
   display:flex;
   flex :1;
   margin-right:0.5em;
+  padding-left:1.5em;
 }
 
 .diary_img{
-  width:100%;
+  width:87%;
   height:auto;
+  margin : 0 auto;
 }
 
 
@@ -619,10 +644,42 @@ body {
   margin-top:1em;
   font-size:0.9em;
 }
+.health_responsive{
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  width:100%;
+  margin-left:2em;
+  justify-content: space-between;
+}
+.health_responsive div{
+  width:calc(100/3);
+  position:relative;
+  margin-right: 4em;
+}
 
 .gsap_img{
-  width : 250px;
+  z-index:1;
+  border-radius: 10px;
+  width : 120%;
   height:400px;
+}
+
+.gsap_img2{
+  z-index:1;
+  /* transform : translate(-100%); */
+  border-radius: 10px;
+  width:120%;
+  height:400px;
+  opacity: 0;
+}
+.gsap_img3 {
+  z-index:1;
+  border-radius: 10px;
+  /* transform: translate(-220%); */
+  width:120%;
+  height:400px;
+  opacity: 0;
 }
 
 .contact_wrap{
@@ -699,7 +756,12 @@ body {
  .health_description{
    display:none;
  } 
+ .Project_padd3{
+   padding-left: 0;
+   padding-right: 2em;
+ }
 }
+
 
 </style>
 
