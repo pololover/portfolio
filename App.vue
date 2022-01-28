@@ -67,7 +67,7 @@
       <div class="project_title">
         Project
       </div>
-      <div class="fran_whiteBox"> 
+      <div class="fran_whiteBox" ref="whiteBox"> 
       <!-- franchise 프로젝트 -->
       <div class="project_fran_title">
           신메뉴드루와
@@ -225,6 +225,10 @@ export default {
     icons() {
       return this.$store.state.icons;
     },
+    focusState(){
+      return this.$store.state.focusState
+    }
+    
   },
   methods: {
     filter(f,iter){
@@ -281,8 +285,14 @@ export default {
       this.$refs.health_ani3.style.animation = 'right .6s linear';
     },
     onFocus : function() {
-      
-    }
+      if(!this.focusState){
+        this.$store.commit('SET_FOCUS', true);
+        this.$refs.whiteBox.style.background='rgba(255,255,255,0.3)';
+      }else{
+        this.$store.commit('SET_FOCUS', false);
+        this.$refs.whiteBox.style.background='rgba(255,255,255,0.85)';
+      }
+      }
   },
   created(){
     const user = [{이름:'천승현', 아이콘:true}, 
@@ -460,7 +470,6 @@ body {
   width:7.1em;
   height:6.4em;
   border-radius: 15px;
-  animation : left 1.5s linear;
 }
 
 @keyframes left {
@@ -489,7 +498,6 @@ body {
 .skill_img_git{
   width : 9.4em;
   height: 6.4em;
-  animation : left 1.5s linear;
 }
 
 .skill_img_phy{
@@ -504,7 +512,7 @@ body {
 }
 
 .Project_wrap{
-  background-color:rgba(0,0,0,0.9);
+  background-color:rgba(0, 0, 0, 0.9);
   padding: 2em 6em 6em;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight:400;
@@ -520,7 +528,7 @@ body {
 }
 
 .Project_padd3{
-  background-color:rgba(255, 255, 255, 0.589);
+  background-color:rgba(255, 255, 255, 0.85);
   height:auto;
   padding-bottom:7em;
   position:relative;
@@ -589,7 +597,7 @@ body {
 }
 .health_description{
   width: 360px;
-  margin-right:1.5em;
+  margin-right:4.5em;
 }
 
 .health_description_fade{
@@ -601,8 +609,9 @@ body {
   position:absolute;
   opacity: 0;
   top:35%;
-  left:25%;
-  font-size:1.2em;
+  left:34%;
+  font-size:17px;
+  text-align:center;
   font-weight:700;
 }
 
@@ -759,6 +768,14 @@ body {
  .Project_padd3{
    padding-left: 0;
    padding-right: 2em;
+ }
+
+ 
+}
+
+@media (max-width:1000px) {
+  .text_in_img {
+    display:none;
  }
 }
 
