@@ -1,6 +1,6 @@
 <template>
 
-  <div class="wrap">
+  <div class="wrap" @click="DropState=false">
     <div class="introd_wrap">
       <!-- header -->
       <div class="header_content">
@@ -8,10 +8,21 @@
           SeungHyun's portfolio
         </div>
         <div class="header_nav">
-          <span class="header_nav_ele">About me</span>
-          <span class="header_nav_ele">Skills</span>
-          <span class="header_nav_ele">Projects</span>
-          <span class="header_nav_ele">Career</span>
+          <span class="header_nav_ele" @click="moveAbout">About me</span>
+          <span class="header_nav_ele" @click="moveSkills">Skills</span>
+          <span class="header_nav_ele" @click="moveProject">Projects</span>
+          <span class="header_nav_ele" @click="moveContact">Contact</span>
+        </div>
+        <div class="dropdown">
+          <button class="menu_bar" @click.stop="DropDown">
+              <i class="fas fa-bars menu_bar"></i>
+          </button>
+          <div class="dropdown-content" v-if="DropState">
+            <div @click="moveAbout">About</div>
+            <div @click="moveSkills">Skills</div>
+            <div @click="moveProject">Project</div>
+            <div @click="moveContact">Contact</div>
+          </div>
         </div>
       </div>
       <!-- body_title -->
@@ -64,8 +75,8 @@
     </div>
     <!-- Projects -->
     <div class="Project_wrap">
-      <div class="project_title">
-        Project
+      <div class="project_title" style="color:white">
+        Projects
       </div>
       <div class="fran_whiteBox" ref="whiteBox"> 
       <!-- franchise 프로젝트 -->
@@ -216,6 +227,7 @@ export default {
       userInfo : {},
       userInfoValue : {},
       scrollTop : 0,
+      DropState : false,
     }
   },
   computed : {
@@ -231,6 +243,37 @@ export default {
     
   },
   methods: {
+    moveAbout : function(){
+      this.DropState=false;
+      const menuHeight = document.querySelector('.header_nav').offsetHeight
+      const myworksLocation = document.querySelector('.About_wrap').offsetTop
+      scrollTo({ top: myworksLocation - menuHeight-30, behavior: 'smooth' })
+    },
+    moveSkills : function() {
+      this.DropState=false;
+      const menuHeight = document.querySelector('.header_nav').offsetHeight
+      const myworksLocation = document.querySelector('.Skills_wrap').offsetTop
+      scrollTo({ top: myworksLocation - menuHeight-40, behavior: 'smooth' })
+    },
+    moveProject : function() {
+      this.DropState=false;
+      const menuHeight = document.querySelector('.header_nav').offsetHeight
+      const myworksLocation = document.querySelector('.Project_wrap').offsetTop
+      scrollTo({ top: myworksLocation - menuHeight-63, behavior: 'smooth' })
+     },
+    moveContact : function() {
+      this.DropState=false;
+      const menuHeight = document.querySelector('.header_nav').offsetHeight
+      const myworksLocation = document.querySelector('.contact_wrap').offsetTop
+      scrollTo({ top: myworksLocation - menuHeight, behavior: 'smooth' })
+     },
+    DropDown : function() {
+      if(this.DropState){
+        this.DropState = false;
+      }else {
+        this.DropState = true;
+      }
+    },
     filter(f,iter){
       var res = [];
       for (const a of iter){
@@ -347,7 +390,7 @@ body {
   top:0px;
   left:0px;
   right:0px;
-  padding: 1em;
+  padding: 2em;
   display:flex;
   align-items: center;
   justify-content: space-between;
@@ -362,12 +405,46 @@ body {
   font-size : 1.1em;
   cursor : pointer;
 }
+.dropdown {
+  display: inline-block;
+}
+
+.menu_bar{
+  background-color:rgba(255,255,255,0.1);
+  padding-left:1em;
+  margin-left:1em;
+  font-size:1.5em;
+  display:none;
+  cursor: pointer;
+  border : none;
+}
+
+.dropdown-content{
+  animation:left .5s ease;
+  top:0;
+  right:0;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: rgba(240, 200, 200,0.8);
+  min-width : 200px;
+}
+
+.dropdown-content div{
+  display : block;
+  text-decoration : none;
+  color : rgb(37, 37, 37);
+  font-size: 12px;
+  padding : 12px 20px;
+  cursor:pointer;
+}
 
 .body_title_ani{
   display:flex;
   flex-direction: column;
   padding: 20rem 4rem 8rem;
   font-size:2em;
+  word-break: keep-all;
 }
 
 .About_wrap{
@@ -460,7 +537,7 @@ body {
 }
 
 .skill_img_vue {
-  width:7.1em;
+  width:6.9em;
   height:6.4em;
   /* animation : top 1.5s linear; */
 }
@@ -512,7 +589,7 @@ body {
 }
 
 .Project_wrap{
-  background-color:rgba(0, 0, 0, 0.9);
+  background-color:rgba(0, 0, 0, 0.8);
   padding: 2em 6em 6em;
   font-family: 'Noto Sans KR', sans-serif;
   font-weight:400;
@@ -777,6 +854,43 @@ body {
   .text_in_img {
     display:none;
  }
+}
+/* mobile and 800px>= */
+
+@media (max-width:830px){
+  .header_nav{
+    display:none;
+  }
+  .menu_bar {
+    display:block;
+  }
+  .header_content{
+    padding:0;
+  }
+  .header_title{
+    font-size:1.2em;
+  }
+  .icons_dummy{
+    flex-direction: column;
+  }
+  .icons_flex_col{
+    word-break: keep-all;
+  }
+  .skill_img_vue {
+    margin-top:1em;
+    width:5.5em;
+    height:5em;
+  }
+  .skill_img_fire {
+    margin-top:1em;
+    width:5.5em;
+    height:5em;
+  }
+  .skill_img_git {
+    margin-top:1em;
+    width:8em;
+    height:6em;
+  }
 }
 
 
