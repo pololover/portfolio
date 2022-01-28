@@ -96,6 +96,7 @@
             깃허브: <a href="https://github.com/pololover/FranchiseNew">https://github.com/pololover/FranchiseNew</a>
           </div>
         </div>
+        <div class="responsive_title">프랜차이즈 신메뉴에 대해서 정보를 공유하고 토론할 수 있는 웹사이트입니다. </div>
         <div class="container">
          <div class="wrapper">
           <input type="checkbox" @click="onFocus" class="watch">
@@ -131,6 +132,7 @@
             깃허브:<a href="https://github.com/pololover/Mukhondon">https://github.com/pololover/Mukhondon</a>
           </div>
         </div>
+        <div class="responsive_title">유명 인스타그래머에게 맛집을 추천받을 수 있는 웹사이트입니다.</div>
           <div class="text_photo">
             <img src="../src/images/diary.jpg" class="diary_img">
             <div class="text_in_img">Vue 컴포넌트화 및 Swiper에 대한 이해증가</div>
@@ -181,8 +183,12 @@
     <!-- Contact -->
     <div class="contact_wrap">
       <div class="flex_contact">
-        <img src="../src/images/github.png" class="contact_imgs">
-        <img src="../src/images/tistory.png" class="contact_imgs_tistory">
+        <a href="https://github.com/pololover">
+          <img src="../src/images/github.png" class="contact_imgs">
+        </a>
+        <a href="https://pololove.tistory.com">
+          <img src="../src/images/tistory.png" class="contact_imgs_tistory">
+        </a>
       </div>
       <!-- text -->
       <div class="right_text">
@@ -508,7 +514,7 @@ body {
 .project_fran_title {
   display:flex;
   justify-content: center;
-  margin-right:4em;
+  margin-right:1%;
   font-size:1.7em;
   margin-top:1em;
   font-weight:600;
@@ -516,7 +522,8 @@ body {
 
 .fran_whiteBox{
   background-color:rgb(255, 255, 255, 0.5);
-  padding : 0 1em;
+  padding : 0 1em 3em;
+  position:relative;
 }
 
 .fran_expl {
@@ -543,6 +550,18 @@ body {
 .fran_git {
   margin-top: 2em;
   font-size: 0.9em;
+  
+}
+
+.responsive_title{
+  display:none;
+  position:absolute;
+  left:50%;
+  transform: translate(-50%);
+  bottom:5%;
+  font-size:1.1em;
+  font-weight:800;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .project_health_wrap{
@@ -559,7 +578,7 @@ body {
   position:absolute;
   opacity: 0;
   top:35%;
-  left:28%;
+  left:25%;
   font-size:1.2em;
   font-weight:700;
 }
@@ -568,13 +587,12 @@ body {
   position:relative;
   display:flex;
   flex :1;
-  margin-left:6em;
+  margin-right:0.5em;
 }
 
 .diary_img{
   width:100%;
-  height:370px;
-  border-radius: 5px;
+  height:auto;
 }
 
 
@@ -643,6 +661,44 @@ body {
   justify-content: center;
   align-items: center;
   font-size:0.8em;
+}
+
+@media (max-height : 700px) {
+  .fran_whiteBox{
+    padding:0 1em 6em;
+  }
+}
+
+@media (max-height:600px){
+  .fran_whiteBox{
+    padding:0 1em 9em;
+  }
+}
+
+@media (max-height:500px){
+  .fran_expl{
+    display:none;
+  }
+  .container{
+    padding-right:24%;
+  }
+}
+@media (max-width:1120px){
+  .fran_expl{
+    display:none;
+  }
+  .container{
+    padding-right:24%;
+  }
+  .responsive_title{
+    display:block;
+  }
+}
+
+@media (max-width:1120px) {
+ .health_description{
+   display:none;
+ } 
 }
 
 </style>
