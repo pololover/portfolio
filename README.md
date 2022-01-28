@@ -21,4 +21,9 @@ animation은 전체 효과들을 어떻게 사용할지, @keyframes는 animatino
 
 *이미지 hover시 글자를 보이게 하려면 <div>부모요소 안에 img태그와 텍스트<div>를 넣어주고 부모태그:hover .텍스트이름하고 opacity를 변경해주면 된다.
 
-  *이미지들을 감싸는 부모태그에서 position:relative를 한 뒤에 flex를 주어야 하위 이미지태그에서 width :100%가 작동한다.
+*이미지들을 감싸는 부모태그에서 position:relative를 한 뒤에 flex를 주어야 하위 이미지태그에서 width :100%가 작동한다.
+ 
+ * 가운데 정렬하는 코드. left:50%는 position이 absolute, fixed, relative에서만 작동하기에 꼭 명시해야 함.
+    position:relative;
+    left:50%; 
+    transform: translate(-50%);
