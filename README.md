@@ -25,3 +25,6 @@ animation은 전체 효과들을 어떻게 사용할지, @keyframes는 animatino
  
  * 가운데 정렬하는 코드. left:50%는 position이 absolute, fixed, relative에서만 작동하기에 꼭 명시해야 함.
 ex) position:relative;left:50%; transform: translate(-50%);
+ 
+ * vue에서 자식컴포넌트의 ref를 부모에서 사용하고 싶다면 컴포넌트에 ref를 method로 준 뒤 참조해서 자식 컴포넌트의 method를 사용.
+ ex) this.$refs.skill_imgs.get_refs(); //get_refs는 자식컴포넌트의 method.
