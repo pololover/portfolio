@@ -108,6 +108,7 @@
           </div>
         </div>
         <div class="responsive_title">프랜차이즈 신메뉴에 대해서 정보를 공유하고 토론할 수 있는 웹사이트입니다. </div>
+      <div class="container_wrapper">
         <div class="container">
          <div class="wrapper">
           <input type="checkbox" @click="onFocus" class="watch">
@@ -119,8 +120,13 @@
           </div>
           </div>
         </div>
-       </div>
+        <!-- 반응형 -->
+        <div class="responsive_youtube"> 
+          <iframe border="0" width="250" height="150" src="https://www.youtube.com/embed/F3t98EjBnmo?autoplay=1&mute=1&controls=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
       </div>
+    </div>
+    </div>
       <div class="Project_padd3">
         <div class="project_fran_title">맛집일기</div>
         <div class="project_health_wrap">
@@ -406,7 +412,7 @@ body {
   cursor : pointer;
 }
 .dropdown {
-  display: inline-block;
+  display: none;
 }
 
 .menu_bar{
@@ -414,7 +420,6 @@ body {
   padding-left:1em;
   margin-left:1em;
   font-size:1.5em;
-  display:none;
   cursor: pointer;
   border : none;
 }
@@ -595,19 +600,10 @@ body {
   font-weight:400;
 }
 
-.Project_padd {
-  margin-top:1em;
-  margin-bottom:1em;
-  padding: 3em;
-  border-radius: 30px;
-  background-color:transparent;
-  height:20em;
-}
-
 .Project_padd3{
   background-color:rgba(255, 255, 255, 0.85);
   height:auto;
-  padding-bottom:7em;
+  padding-bottom:5em;
   position:relative;
   padding-left:2em;
 }
@@ -615,7 +611,7 @@ body {
 .project_fran_title {
   display:flex;
   justify-content: center;
-  margin-right:1%;
+  padding-right:3%;
   font-size:1.7em;
   margin-top:1em;
   font-weight:600;
@@ -652,7 +648,6 @@ body {
 .fran_git {
   margin-top: 2em;
   font-size: 0.9em;
-  
 }
 
 .responsive_title{
@@ -664,6 +659,10 @@ body {
   font-size:1.1em;
   font-weight:800;
   font-family: 'Nanum Gothic', sans-serif;
+}
+
+.responsive_youtube{
+  display:none;
 }
 
 .project_health_wrap{
@@ -683,11 +682,12 @@ body {
 }
 
 .text_in_img{
+  word-break: keep-all;
   position:absolute;
   opacity: 0;
   top:35%;
-  left:34%;
-  font-size:17px;
+  left:36%;
+  font-size:1em;;
   text-align:center;
   font-weight:700;
 }
@@ -702,7 +702,7 @@ body {
 
 .diary_img{
   width:87%;
-  height:auto;
+  height:100%;
   margin : 0 auto;
 }
 
@@ -836,6 +836,12 @@ body {
   .responsive_title{
     display:block;
   }
+  .project_fran_title{
+    margin-bottom:0;
+    font-size:0.9em;
+    padding-right:0;
+    padding-left:2em;
+  }
 }
 
 @media (max-width:1120px) {
@@ -843,6 +849,7 @@ body {
    display:none;
  } 
  .Project_padd3{
+   padding-bottom:6em;
    padding-left: 0;
    padding-right: 2em;
  }
@@ -861,8 +868,11 @@ body {
   .header_nav{
     display:none;
   }
-  .menu_bar {
+  .dropdown {
     display:block;
+  }
+  .menu_bar {
+    visibility: visible;
   }
   .header_content{
     padding:0;
@@ -891,8 +901,56 @@ body {
     width:8em;
     height:6em;
   }
+  .skill_img_java {
+    width:7em;
+  }
+  .fran_whiteBox{
+    padding:0;
+  }
+  .responsive_title{
+    margin-right:1em;
+    font-size:0.2em;
+  }
+  .container_wrapper {
+    padding: 8em;
+    position:relative;
+  }
+  iframe{
+    position: absolute;
+    background: #c4cbde;
+    top: 35%;
+    left: 50%;
+    min-width: 40%;
+    min-height:50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .container {
+    display:none;
+  }
+  .responsive_youtube {
+    display:block;
+  }
+  
 }
 
+@media (max-width:480px) {
+  
+  .text_photo {
+    position:static;
+  }
+  .Project_padd3{
+    padding-bottom:8em;
+    position:relative;
+  }
+  .diary_img {
+    position:absolute;
+    top:20%;
+    left:14%;
+    width:200px;
+    height:100px;
+  }
+}
 
 </style>
 
