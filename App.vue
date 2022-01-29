@@ -74,13 +74,13 @@
       </div>
     </div>
     <!-- Projects -->
-    <div class="Project_wrap">
+    <div class="Project_wrap" ref="project_wrap">
       <div class="project_title" style="color:white">
         Projects
       </div>
       <div class="fran_whiteBox" ref="whiteBox"> 
       <!-- franchise 프로젝트 -->
-      <div class="project_fran_title">
+      <div class="project_fran_title" style="padding-right:2em;">
           신메뉴드루와
       </div>
       <div>
@@ -156,7 +156,7 @@
           </div>
         </div>
       </div>
-      <div class="Project_padd3">
+      <div class="Project_padd3 Project_padd3_respon">
         <div class="project_fran_title">
           헬맵
         </div>
@@ -183,18 +183,19 @@
           </div>
             </div>
           </div>
+          <div class="responsive_title">유명 인스타그래머에게 맛집을 추천받을 수 있는 웹사이트입니다.</div>
           <!-- img gsap -->
           <div>
             <!-- img gsap 애니메이션 사진-1 -->
             <div class="health_responsive">
               <div>
-                <img src="../src/images/health-1.jpg" class="gsap_img" @mouseenter="img_hover" ref="health_ani1">
+                <img src="../src/images/health-1.jpg" class="gsap_img gsap_imgs" @mouseenter="img_hover" ref="health_ani1">
               </div>
               <div>
-                <img src="../src/images/health-4.jpg" class="gsap_img2" ref="health_ani2">
+                <img src="../src/images/health-4.jpg" class="gsap_img2 gsap_imgs" ref="health_ani2">
               </div>
               <div>
-                <img src="../src/images/health-3.jpg" class="gsap_img3" ref="health_ani3">
+                <img src="../src/images/health-3.jpg" class="gsap_img3 gsap_imgs" ref="health_ani3">
               </div>
             </div>
             <!-- img gsap 애니메이션 사진-2 -->
@@ -234,6 +235,9 @@ export default {
       userInfoValue : {},
       scrollTop : 0,
       DropState : false,
+      scrollProject : 0,
+      scrollDiary : 0,
+      scrollHealth : 0,
     }
   },
   computed : {
@@ -296,6 +300,7 @@ export default {
     },
     scrollEvent : function(){
       this.scrollTop = document.documentElement.scrollTop;
+      console.log(this.scrollTop);
       if(this.scrollTop >=410 ){
         this.$refs.logo_imgs1.style.visibility = 'visible';
         this.$refs.logo_imgs1.style.animation = 'right 1.3s linear';
@@ -322,6 +327,13 @@ export default {
       this.$refs.logo_imgs10.style.visibility = 'visible';
       this.$refs.logo_imgs10.style.animation = 'bottom 1.3s linear';
       }
+    const menuHeight = document.querySelector('.header_nav').offsetHeight
+    const myworksLocation = document.querySelector('.Project_wrap').offsetTop-400
+
+    if(this.scrollTop > myworksLocation-menuHeight){
+      this.$refs.project_wrap.style.visibility = 'visible';
+      this.$refs.project_wrap.style.animation = 'left 1s linear';
+    }
     },
     img_hover : function(){
       console.log('aa')
@@ -450,6 +462,8 @@ body {
   padding: 20rem 4rem 8rem;
   font-size:2em;
   word-break: keep-all;
+  font-weight: 800;
+  font-family: 'Nanum Gothic', sans-serif;
 }
 
 .About_wrap{
@@ -594,6 +608,7 @@ body {
 }
 
 .Project_wrap{
+  visibility: hidden;
   background-color:rgba(0, 0, 0, 0.8);
   padding: 2em 6em 6em;
   font-family: 'Noto Sans KR', sans-serif;
@@ -839,8 +854,7 @@ body {
   .project_fran_title{
     margin-bottom:0;
     font-size:0.9em;
-    padding-right:0;
-    padding-left:2em;
+    padding-left:3em;
   }
 }
 
@@ -905,6 +919,7 @@ body {
     width:7em;
   }
   .fran_whiteBox{
+    
     padding:0;
   }
   .responsive_title{
@@ -931,7 +946,29 @@ body {
   .responsive_youtube {
     display:block;
   }
-  
+  .gsap_imgs{
+    width:120%;
+    height:250px;
+  }
+}
+@media(max-width:640px){
+  .Project_padd3_respon{
+    padding-bottom:2em;
+  }
+  .health_responsive{
+    position:relative;
+    top:-20%;
+    right:3%;
+    margin:0;
+    padding-right:4em;
+  }
+  .health_responsive div{
+    margin-right:0.5em;
+  }
+  .gsap_imgs{
+    width:80px;
+    height:160px;
+  }
 }
 
 @media (max-width:480px) {
@@ -943,12 +980,33 @@ body {
     padding-bottom:8em;
     position:relative;
   }
+
+  .Project_padd3_respon{
+    padding-bottom:2em;
+  }
   .diary_img {
     position:absolute;
     top:20%;
     left:14%;
     width:200px;
     height:100px;
+  }
+  .health_responsive{
+    position:relative;
+    top:-20%;
+    right:5%;
+    margin:0;
+    padding-right:4em;
+  }
+  .health_responsive div{
+    margin-right:0.5em;
+  }
+  .gsap_imgs{
+    width:80px;
+    height:160px;
+  }
+  .body_title_ani{
+    font-size:1.4em;
   }
 }
 
