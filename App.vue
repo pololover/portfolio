@@ -1,8 +1,7 @@
 <template>
-
   <div class="wrap" @click="DropState=false">
     <!--introduce section-->
-    <Introduce></Introduce>
+    <Introduce ref="introduce" :scrollTop="scrollTop" :DropState="DropState" @DropState="DropChange"></Introduce>
     <!-- About me -->
     <About></About>
     <!-- skills-->
@@ -35,29 +34,27 @@ export default {
       scrollProject : 0,
       scrollDiary : 0,
       scrollHealth : 0,
+      DropState : false,
     }
-  },
-  computed : {
-    focusState(){
-      return this.$store.state.focusState
-    }
-    
   },
   methods: {
     scrollEvent : function(){
       this.scrollTop = document.documentElement.scrollTop;
-      console.log(this.scrollTop);
+      this.$refs.introduce.bar_move();
       this.$refs.skill_imgs.get_refs();
       this.$refs.project.get_scroll_ani();
     },
+    DropChange : function(bol){
+      this.DropState = bol;
+    }
   },
   mounted() {
+    window.scrollTo(0, 0);
     document.addEventListener('scroll', this.scrollEvent);
   }
 }
 </script>
 <style src="@/assets/style/style.css">
 </style>
-<style lang="scss">
-@import "@/assets/style/sstyle.scss"
+<style lang="scss" src="@/assets/style/sstyle.scss">
 </style>
